@@ -1,0 +1,50 @@
+You are given a number n. You need to find nth Fibonacci number.
+F(n)=F(n-1)+F(n-2); where F(1)=1 and F(2)=1
+
+Example 1:
+
+Input:
+n = 1
+Output: 1
+Explanation: The first fibonacci
+ number is 1
+Example 2:
+
+Input:
+n = 20
+Output:6765
+Explanation: The 20th fibonacci 
+number is 6765
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+class DriverClass{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t --> 0)
+		{
+			int n = sc.nextInt();
+			System.out.println(new PrintFib().fibonacci(n));
+		}
+	}
+}
+
+class PrintFib
+{
+    static long fibonacci(int n)
+    {
+        if (n<1)
+        return 0;
+        
+        if (n<=2)
+        return 1;
+        
+        return fibonacci(n-1) + fibonacci(n-2);
+    }
+}
+

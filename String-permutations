@@ -1,0 +1,75 @@
+Given a string S. The task is to find all permutations of a given string.
+
+Example 1:
+
+Input:
+S = ABC
+Output: ABC ACB BAC BCA CAB CBA 
+Example 2:
+
+Input:
+S = ABSG
+Output: ABGS ABSG AGBS AGSB ASBG ASGB
+BAGS BASG BGAS BGSA BSAG BSGA GABS
+GASB GBAS GBSA GSAB GSBA SABG SAGB
+SBAG SBGA SGAB SGBA
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+import java.io.*;
+import java.util.*;
+
+class DriverClass{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		sc.nextLine();
+		while(t --> 0)
+		{
+			Permutation obj = new Permutation();
+			String S = sc.nextLine();
+			ArrayList<String> arr = obj.permutations(S);
+			for(String s : arr){
+				System.out.print(s + " ");
+			}
+			System.out.println();
+		}
+	}
+}
+
+class Permutation {
+	public static ArrayList<String> permutations(String s) {
+        ArrayList<String> perms = new ArrayList<String>();
+        
+        if (s == null) { // error case
+        		
+            return null;
+        } 
+        else if (s.length() == 0) { // base case
+        		
+            perms.add("");
+            return perms;
+        }
+        
+        char first = s.charAt(0); // get the first character
+        String remainder = s.substring(1); // remove the first character
+        ArrayList<String> words = permutations(remainder);
+        
+        for (String word : words) {
+            for (int j = 0; j <= word.length(); j++) {
+        			
+                perms.add(insertCharAt(word, first, j));
+        		
+            }
+        }
+            return perms;
+    }
+        
+    public static String insertCharAt(String word, char c, int i) {
+        String start = word.substring(0, i);
+        String end = word.substring(i);
+        return start + c + end;
+    }
+}
+
